@@ -1,3 +1,7 @@
+DROP DATABASE IF EXISTS todolist ;
+CREATE DATABASE todolist ;
+USE todolist ;
+
 CREATE TABLE td_users IF NOT EXISTS (
     u_id INT NOT NULL AUTO_INCREMENT,
     u_pseudo VARCHAR (25) NOT NULL,

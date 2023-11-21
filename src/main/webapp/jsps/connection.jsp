@@ -21,7 +21,7 @@
             <h2>Formulaire d'enregistrement</h2>
         </div>
 
-		<form class="container mt-5">
+		<form class="container mt-5" method="post" action="enregistrement" >
             <div class="form-floating mb-3 mt-3">
                 <label for="epseudo" class="form-label">Pseudo :</label><br>
                 <input type="text" id="epseudo" name="epseudo" class="form-control"><br>
@@ -34,7 +34,7 @@
         </form>
 
 		<h2>Formulaire de connection</h2>
-		<form class="container mt-5">
+		<form class="container mt-5" method="post" action="connection">
             <div class="form-floating mb-3 mt-3">
                 <label for="cpseudo" class="form-label">Pseudo :</label><br>
                 <input type="text" id="cpseudo" name="cpseudo" class="form-control"><br>

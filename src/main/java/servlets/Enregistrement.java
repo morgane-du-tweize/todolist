@@ -16,22 +16,13 @@ import models.Utilisateur;
 @WebServlet("/enregistrement")
 public class Enregistrement extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-	/*
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-	*/
 
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 
 		String userName = request.getParameter("epseudo");
 		String userPassword = request.getParameter("epassword");
-		System.out.println(userName);
 		Utilisateur newUser = new Utilisateur(userName, userPassword);
-		System.out.println("nouvel utilisateur : " + newUser.toString());
 		UtilisateurDAO.saveUser(newUser);
 		
 		response.sendRedirect("accueil");

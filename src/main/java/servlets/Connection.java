@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import DAO.DAOContext;
+import DAO.UtilisateurDAO;
+import models.Utilisateur;
 
 @WebServlet(
 		name = "connection",
@@ -33,7 +35,17 @@ public class Connection extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		
+		//isValidUtilisateur
+		String pseudo = request.getParameter("cpseudo");
+		String password = request.getParameter("cpassword");
+		Utilisateur user = UtilisateurDAO.isValidUtilisateur(pseudo, password) ;
+		if (user != null) {
+			response.sendRedirect("accueil");
+		}
+		else {
+			doGet(request, response);
+		}
 	}
 
 }

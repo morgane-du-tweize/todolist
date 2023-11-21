@@ -19,7 +19,6 @@ public class UtilisateurDAO extends DAOContext {
 				prep.setString(2, newUser.getuPassword());
 
 				prep.executeUpdate();
-				System.out.println("utilisateur créé en base de données");
 			}
 		}
 		catch (SQLException e) {
@@ -37,7 +36,6 @@ public class UtilisateurDAO extends DAOContext {
 		try(Connection connection = DriverManager.getConnection(url, login, password)){
 
 			String isConnectedUser = "SELECT * FROM td_users WHERE u_pseudo =? AND u_password =?;" ;
-			System.out.println("je suis connecté");
 
 			try (PreparedStatement prep = connection.prepareStatement(isConnectedUser)){
 				prep.setString(1, uLogin);

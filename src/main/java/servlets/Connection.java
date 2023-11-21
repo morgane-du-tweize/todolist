@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import DAO.DAOContext;
 import DAO.UtilisateurDAO;
@@ -41,6 +42,8 @@ public class Connection extends HttpServlet {
 		String password = request.getParameter("cpassword");
 		Utilisateur user = UtilisateurDAO.isValidUtilisateur(pseudo, password) ;
 		if (user != null) {
+			HttpSession session = request.getSession(true);
+			session.setAttribute("connectedUser", user);
 			response.sendRedirect("accueil");
 		}
 		else {

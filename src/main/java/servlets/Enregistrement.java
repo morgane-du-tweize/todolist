@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import DAO.UtilisateurDAO;
 import models.Utilisateur;
@@ -24,7 +25,8 @@ public class Enregistrement extends HttpServlet {
 		String userPassword = request.getParameter("epassword");
 		Utilisateur newUser = new Utilisateur(userName, userPassword);
 		UtilisateurDAO.saveUser(newUser);
-		
+		HttpSession session = request.getSession(true);
+		session.setAttribute("connectedUser", newUser);
 		response.sendRedirect("accueil");
 		
 	}

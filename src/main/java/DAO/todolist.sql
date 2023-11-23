@@ -1,14 +1,15 @@
 CREATE TABLE td_users IF NOT EXISTS (
     u_id INT NOT NULL AUTO_INCREMENT,
     u_pseudo VARCHAR (25) NOT NULL,
-    u_password VARCHAR (25) NOT NULL,
+    u_password VARCHAR (100) NOT NULL,
     PRIMARY KEY (u_id)) ;
     
 INSERT INTO td_users (u_pseudo, u_password) VALUES ("parrain13", "pizza") ;
-INSERT INTO td_users (u_pseudo, u_password) VALUES ("dexter labo", "omelette") ;
-INSERT INTO td_users (u_pseudo, u_password) VALUES ("ellen ripley", "espace") ;
+INSERT INTO td_users (u_pseudo, u_password) VALUES ("dexter", "omelette") ;
+INSERT INTO td_users (u_pseudo, u_password) VALUES ("ripley", "alien") ;
 INSERT INTO td_users (u_pseudo, u_password) VALUES ("jean kevin", "crevette") ;
 INSERT INTO td_users (u_pseudo, u_password) VALUES ("julien a nouveau", "test") ;
+
 
 CREATE TABLE td_taches IF NOT EXISTS (
     t_id INT NOT NULL AUTO_INCREMENT,

@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import models.Utilisateur;
 
 public class UtilisateurDAO extends DAOContext {
@@ -13,10 +15,12 @@ public class UtilisateurDAO extends DAOContext {
 	public static void saveUser(Utilisateur newUser) {
 		try(Connection connection = DriverManager.getConnection(url, login, password)){
 			
+			// À CE MOMENT LÀ JE LANCE ENCRYPTATION
+			String hashed = BCrypt.hashpw(newUser.getuPassword(), BCrypt.gensalt());
 			String saveUser = "INSERT INTO td_users (u_pseudo, u_password) VALUES (?, ?); ";
 			try (PreparedStatement prep = connection.prepareStatement(saveUser)){
 				prep.setString(1, newUser.getuPseudo());
-				prep.setString(2, newUser.getuPassword());
+				prep.setString(2, hashed);
 
 				prep.executeUpdate();
 			}
@@ -35,21 +39,26 @@ public class UtilisateurDAO extends DAOContext {
 		
 		try(Connection connection = DriverManager.getConnection(url, login, password)){
 
-			String isConnectedUser = "SELECT * FROM td_users WHERE u_pseudo =? AND u_password =?;" ;
+			String isConnectedUser = "SELECT * FROM td_users WHERE u_pseudo =?;" ;
 
 			try (PreparedStatement prep = connection.prepareStatement(isConnectedUser)){
 				prep.setString(1, uLogin);
-				prep.setString(2, uPassword);
 				try(ResultSet resultSet = prep.executeQuery()){
 					if (resultSet.next()) {
-						return new Utilisateur(
-							resultSet.getString("u_pseudo"),	
-							resultSet.getString("u_password")
-						);
+						String hashedPassword = resultSet.getString("u_password");
+						if (BCrypt.checkpw(uPassword, hashedPassword)) {
+							return new Utilisateur(
+									resultSet.getString("u_pseudo"),	
+									uPassword
+								);
+						}
+						else {
+							return null ;
+						}
 					}
 					else {
-						return null ;
-					}	
+						return null;
+					}
 				}
 			}
 			

@@ -7,9 +7,8 @@ public class Utilisateur {
 	private String uPassword ;
 	
 	public Utilisateur(String uPseudo, String uPassword) {
-		super();
-		this.uPseudo = uPseudo;
-		this.uPassword = uPassword;
+		setuPseudo(uPseudo);
+		setuPassword(uPassword);
 	}
 
 	public int getuId() {
@@ -38,7 +37,7 @@ public class Utilisateur {
 
 	@Override
 	public String toString() {
-		return "Utilisateur [uId=" + uId + ", uPseudo=" + uPseudo + ", uPassword=" + uPassword + "]";
+		return "Utilisateur :\n [uId = " + uId + ", uPseudo = " + uPseudo + ", uPassword = " + uPassword ;
 	}
 	
 	

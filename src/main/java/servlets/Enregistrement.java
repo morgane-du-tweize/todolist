@@ -30,5 +30,4 @@ public class Enregistrement extends HttpServlet {
 		response.sendRedirect("accueil");
 		
 	}
-
 }

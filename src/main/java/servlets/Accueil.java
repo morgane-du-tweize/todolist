@@ -8,20 +8,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-/**
- * Servlet implementation class Accueil
- */
 @WebServlet("/accueil")
 public class Accueil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public Accueil() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(true);
@@ -30,9 +20,8 @@ public class Accueil extends HttpServlet {
 			response.sendRedirect("connection");
 			return ;
 		}
+		
 		request.getRequestDispatcher("/jsps/accueil.jsp").forward(request, response);
+
 	}
-
-
-
 }

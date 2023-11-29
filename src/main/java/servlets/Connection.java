@@ -37,18 +37,21 @@ public class Connection extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		//isValidUtilisateur
 		String pseudo = request.getParameter("cpseudo");
 		String password = request.getParameter("cpassword");
 		Utilisateur user = UtilisateurDAO.isValidUtilisateur(pseudo, password) ;
+
 		if (user != null) {
 			HttpSession session = request.getSession(true);
+						
 			session.setAttribute("connectedUser", user);
-			response.sendRedirect("accueil");
+			session.setAttribute("idUser", user.getuId());
+			response.sendRedirect(request.getContextPath() + "/accueil");
+			return;
+			
 		}
-		else {
-			doGet(request, response);
-		}
+		doGet(request, response);
+
 	}
 
 }

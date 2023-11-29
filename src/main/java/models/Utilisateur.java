@@ -37,7 +37,7 @@ public class Utilisateur {
 
 	@Override
 	public String toString() {
-		return "Utilisateur :\n [uId = " + uId + ", uPseudo = " + uPseudo + ", uPassword = " + uPassword ;
+		return "Utilisateur :\n [uId = " + uId + ", uPseudo = " + uPseudo + ", uPassword = " + uPassword + "]";
 	}
 	
 	

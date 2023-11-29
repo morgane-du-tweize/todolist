@@ -13,8 +13,6 @@ public class DAOContext {
 	
 	public static void init(ServletContext context) {
 		
-		Properties props = new Properties();
-		
 		try {
 			Class.forName(context.getInitParameter("JDBC_DRIVER"));
 			url = context.getInitParameter("JDBC_URL");

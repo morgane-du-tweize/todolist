@@ -21,6 +21,7 @@ public class Accueil extends HttpServlet {
 			return ;
 		}
 		
+		System.out.println("doGet() de servlet accueil. id de l'utilisateur " + session.getAttribute("idUser"));
 		request.getRequestDispatcher("/jsps/accueil.jsp").forward(request, response);
 
 	}

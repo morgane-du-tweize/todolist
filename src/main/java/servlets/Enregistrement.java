@@ -18,16 +18,18 @@ import models.Utilisateur;
 public class Enregistrement extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String userName = request.getParameter("epseudo");
 		String userPassword = request.getParameter("epassword");
 		Utilisateur newUser = new Utilisateur(userName, userPassword);
 		UtilisateurDAO.saveUser(newUser);
+		newUser = UtilisateurDAO.isValidUtilisateur(userName, userPassword) ;
+		
 		HttpSession session = request.getSession(true);
 		session.setAttribute("connectedUser", newUser);
-		response.sendRedirect("accueil");
+		session.setAttribute("idUser", newUser.getuId());
+		response.sendRedirect(request.getContextPath() + "/accueil");
 		
 	}
 }

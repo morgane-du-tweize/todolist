@@ -17,22 +17,24 @@ public class UtilisateurDAO extends DAOContext {
 			
 			String hashed = BCrypt.hashpw(newUser.getuPassword(), BCrypt.gensalt());
 			String saveUser = "INSERT INTO td_users (u_pseudo, u_password) VALUES (?, ?); ";
+			
+			
 			try (PreparedStatement prep = connection.prepareStatement(saveUser)){
 				prep.setString(1, newUser.getuPseudo());
 				prep.setString(2, hashed);
-
 				prep.executeUpdate();
+
 			}
 		}
 		catch (SQLException e) {
+			System.out.println("url = " + url);
 			e.printStackTrace();
 		}
 		catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
-	
+
 	public static Utilisateur isValidUtilisateur(String uLogin, String uPassword) {
 		
 		try(Connection connection = DriverManager.getConnection(url, login, password)){
@@ -42,12 +44,17 @@ public class UtilisateurDAO extends DAOContext {
 				prep.setString(1, uLogin);
 				try(ResultSet resultSet = prep.executeQuery()){
 					if (resultSet.next()) {
+						int uID = resultSet.getInt(1);
 						String hashedPassword = resultSet.getString("u_password");
 						if (BCrypt.checkpw(uPassword, hashedPassword)) {
-							return new Utilisateur(
-									resultSet.getString("u_pseudo"),	
+							Utilisateur newUser = new Utilisateur(
+									resultSet.getString("u_pseudo"),
 									uPassword
 								);
+							newUser.setuId(uID);
+							return newUser ;
+
+						
 						}else {
 							return null ;
 						}

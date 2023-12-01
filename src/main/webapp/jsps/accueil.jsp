@@ -24,7 +24,7 @@
 			<% ArrayList<Tache> allTasks = (ArrayList <Tache>) request.getAttribute("listeTaches");
 			
 			if (allTasks != null && allTasks.size() > 0) {  %>
-				<table class="table">
+			<table class="table">
 				<thead>
 					<tr>
 						<th scope="col">description</th>
@@ -32,15 +32,15 @@
 					</tr>
 				</thead>
 				<tbody>
-				
-	
-				<% for (Tache t : allTasks) { %>
+			
+
+			<% for (Tache t : allTasks) { %>
 					<tr>
-						<th><%=t.getDescription() %></th>
-						<th><%=t.getDateLimite() %></th>
+						<th scope="col"><%=t.getDescription() %></th>
+						<th scope="col"><%=t.getDateLimite() %></th>
 					</tr>				
 
-	<% 		}%>
+<% 		}%>
 				</tbody>
 			</table>
 

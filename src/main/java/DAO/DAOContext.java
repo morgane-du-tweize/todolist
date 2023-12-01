@@ -1,8 +1,5 @@
 package DAO;
 
-import java.io.FileInputStream;
-import java.util.Properties;
-
 import javax.servlet.ServletContext;
 
 public class DAOContext {

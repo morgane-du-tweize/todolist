@@ -1,13 +1,15 @@
 package models;
 
+import java.sql.Date;
+
 public class Tache {
 	
 	private String id;
 	private String description ;
-	private String dateLimite ;
+	private Date dateLimite ;
 	private int idUser;
 
-	public Tache(String description, String dateLimite) {
+	public Tache(String description, Date dateLimite) {
 		setDescription(description);
 		setDateLimite(dateLimite);
 	}
@@ -28,11 +30,11 @@ public class Tache {
 		this.description = description;
 	}
 	
-	public String getDateLimite() {
+	public Date getDateLimite() {
 		return dateLimite;
 	}
 	
-	public void setDateLimite(String dateLimite) {
+	public void setDateLimite(Date dateLimite) {
 		this.dateLimite = dateLimite;
 	}
 	

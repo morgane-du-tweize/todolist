@@ -1,6 +1,7 @@
 package DAO;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,7 +9,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import models.Tache;
-import models.Utilisateur;
 
 public class TacheDAO extends DAOContext {
 	
@@ -21,7 +21,7 @@ public class TacheDAO extends DAOContext {
 				try(ResultSet result = prep.executeQuery()){
 					while(result.next()) {
 						String description = result.getString("t_description");
-						String dateLimite = result.getString("t_date_limite");
+						Date dateLimite = result.getDate("t_date_limite");
 						Tache newTask = new Tache(description, dateLimite);
 						listTaches.add(newTask);
 					}
@@ -37,5 +37,29 @@ public class TacheDAO extends DAOContext {
 		}
 		return null ;
 	}
+	
 
+	public static void saveTache(Tache newTask, int idUser) {
+		
+		try(Connection connection = DriverManager.getConnection(url, login, password)) {
+			String saveSql = "INSERT INTO td_taches(t_description, t_date_limite, t_fk_users_id) VALUES (?, ?, ?); ";
+			
+			try (PreparedStatement prep = connection.prepareStatement(saveSql)){
+				prep.setString(1, newTask.getDescription());
+				prep.setDate(2, newTask.getDateLimite());				
+				prep.setInt(3, idUser);
+
+				prep.executeUpdate();
+			}
+
+		}
+		catch(SQLException e) {
+			System.out.println("erreur sql");
+			e.printStackTrace();
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
 }

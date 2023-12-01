@@ -53,7 +53,7 @@
 			
 			<h2>Ajouter une nouvelle tâche</h2>
 			 
-			<form class="container mt-5" method="post" action="accueil">
+			<form class="container mt-5" method="post" action="task">
 				<div class="form-floating mb-3 mt-3">
 					<label for="ndescription" class="form-label">description de la tâche :</label><br>
 					<input type="text" id="ndescription" name="ndescription" class="form-control"><br>
@@ -64,7 +64,7 @@
 					<input type="date" id="ndatelim" name="ndatelim" class="form-control"><br>
 				</div>
 
-				<input type="submit" vale="submit" class="btn btn-light">
+				<input type="submit" vale="submit" class="btn btn-l	ight">
 			</form>
 			
 		</main>

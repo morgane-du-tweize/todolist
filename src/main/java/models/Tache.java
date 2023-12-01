@@ -7,12 +7,9 @@ public class Tache {
 	private String dateLimite ;
 	private int idUser;
 
-
-	public Tache(String id, String description, String dateLimite, int idUser) {
-		setId(id);
+	public Tache(String description, String dateLimite) {
 		setDescription(description);
 		setDateLimite(dateLimite);
-		setIdUser(idUser);
 	}
 
 	public String getId() {
@@ -51,9 +48,6 @@ public class Tache {
 	public String toString() {
 		return "Tache :\n"
 				+ "[id=" + id + ", description = " + description + ", dateLimite = " + dateLimite + ", idUser = " + idUser ;
-
 	}
 	
-	
-
 }

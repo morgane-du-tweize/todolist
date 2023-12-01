@@ -25,7 +25,6 @@ public class Connection extends HttpServlet {
         super();
     }
 
-
     @Override
     public void init() throws ServletException {
     	DAOContext.init(this.getServletContext());
@@ -43,7 +42,6 @@ public class Connection extends HttpServlet {
 
 		if (user != null) {
 			HttpSession session = request.getSession(true);
-			System.out.println("utilisateur : " + user.toString());	
 			session.setAttribute("connectedUser", user);
 			session.setAttribute("idUser", user.getuId());
 			response.sendRedirect(request.getContextPath() + "/accueil");

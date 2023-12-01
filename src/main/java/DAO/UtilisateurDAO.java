@@ -17,13 +17,10 @@ public class UtilisateurDAO extends DAOContext {
 			
 			String hashed = BCrypt.hashpw(newUser.getuPassword(), BCrypt.gensalt());
 			String saveUser = "INSERT INTO td_users (u_pseudo, u_password) VALUES (?, ?); ";
-			
-			
 			try (PreparedStatement prep = connection.prepareStatement(saveUser)){
 				prep.setString(1, newUser.getuPseudo());
 				prep.setString(2, hashed);
 				prep.executeUpdate();
-
 			}
 		}
 		catch (SQLException e) {
@@ -54,7 +51,6 @@ public class UtilisateurDAO extends DAOContext {
 							newUser.setuId(uID);
 							return newUser ;
 
-						
 						}else {
 							return null ;
 						}

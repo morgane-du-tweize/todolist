@@ -1,12 +1,17 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import DAO.TacheDAO;
+import models.Tache;
 
 @WebServlet("/accueil")
 public class Accueil extends HttpServlet {
@@ -21,7 +26,9 @@ public class Accueil extends HttpServlet {
 			return ;
 		}
 		
-		System.out.println("doGet() de servlet accueil. id de l'utilisateur " + session.getAttribute("idUser"));
+		int idUser = (int) session.getAttribute("idUser") ;
+		ArrayList<Tache> allTasks = TacheDAO.selectAll(idUser) ;
+		request.setAttribute("listeTaches", allTasks);		
 		request.getRequestDispatcher("/jsps/accueil.jsp").forward(request, response);
 
 	}

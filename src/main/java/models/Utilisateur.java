@@ -1,7 +1,6 @@
 package models;
 
 public class Utilisateur {
-	
 	private int uId ;
 	private String uPseudo ;
 	private String uPassword ;
@@ -39,6 +38,5 @@ public class Utilisateur {
 	public String toString() {
 		return "Utilisateur :\n [uId = " + uId + ", uPseudo = " + uPseudo + ", uPassword = " + uPassword + "]";
 	}
-	
 	
 }

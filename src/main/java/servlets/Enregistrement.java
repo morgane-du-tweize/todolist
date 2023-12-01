@@ -11,9 +11,6 @@ import javax.servlet.http.HttpSession;
 import DAO.UtilisateurDAO;
 import models.Utilisateur;
 
-/**
- * Servlet implementation class Enregistrement
- */
 @WebServlet("/enregistrement")
 public class Enregistrement extends HttpServlet {
 	private static final long serialVersionUID = 1L;

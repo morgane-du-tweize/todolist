@@ -13,7 +13,7 @@
 		<header>
 			<div class="p-5 bg-primary text-white text-center"><h2>Application TO-DO list</h2></div>
 		</header>
-        <div class="container h1">
+        <div class="container m-5">
             <h1>Veuillez vous enregistrer ou vous connecter</h1>
         </div>
 		
@@ -22,28 +22,28 @@
         </div>
 
 		<form class="container mt-5" method="post" action="enregistrement" >
-            <div class="form-floating mb-3 mt-3">
+            <div class="form-floating w-25">
                 <label for="epseudo" class="form-label">Pseudo :</label><br>
                 <input type="text" id="epseudo" name="epseudo" class="form-control"><br>
             </div>
-            <div class="form-floating mb-3 mt-3">
+            <div class="form-floating w-25">
                 <label for="epassword" class="form-label"></label>Password :<br>
                 <input type="password" id="epassword" name="epassword" class="form-control"><br>
             </div>
-            <input type="submit" value="submit" class="btn btn-light"><br><br>
+            <input type="submit" value="submit" class="btn btn-light w-25"><br><br>
         </form>
 
 		<h2>Formulaire de connection</h2>
 		<form class="container mt-5" method="post" action="connection">
-            <div class="form-floating mb-3 mt-3">
+            <div class="form-floating w-25">
                 <label for="cpseudo" class="form-label">Pseudo :</label><br>
                 <input type="text" id="cpseudo" name="cpseudo" class="form-control"><br>
             </div>
-            <div class="form-floating mb-3 mt-3">
+            <div class="form-floating w-25">
                 <label for="cpassword" class="form-label"></label><br>
                 <input type="password" id="cpassword" name="cpassword" class="form-control"><br>
             </div>
-            <input type="submit" value="submit" class="btn btn-light"><br><br>
+            <input type="submit" value="submit" class="btn btn-light w-25"><br><br>
         </form>
 
 

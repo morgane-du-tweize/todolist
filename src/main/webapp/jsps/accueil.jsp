@@ -18,40 +18,38 @@
 		</header>
 		
 		<main>
-			<h1>Liste de tâches</h1>
-			<h2>Bonjour ${idUser} - voici la liste de vos missions</h2>
+
+			<div class="m-5">
+				<h1>Liste de tâches</h1>
+			</div>
+			
+			<h2 class="m-5">Bonjour ${idUser} - voici la liste de vos missions</h2>
 
 			<% ArrayList<Tache> allTasks = (ArrayList <Tache>) request.getAttribute("listeTaches");
 			
-			if (allTasks != null && allTasks.size() > 0) {  %>
-			<table class="table">
-				<thead>
-					<tr>
-						<th scope="col">description</th>
-						<th scope="col">date limite</th>
-					</tr>
-				</thead>
-				<tbody>
+			if (allTasks != null && allTasks.size() > 0) { 
+
+				 for (Tache t : allTasks) { 
+					session.setAttribute("oneTask", t);  %>
+					
+					<ul class="list-group list-group-horizontal">
+						<li class="list-group-item"><%=t.getDescription()%> </li>
+						<li class="list-group-item"><a href="details">details</a> </li>
+					
+					</ul>
+	
+				<%	}
+			}	 
+				 
 			
-
-			<% for (Tache t : allTasks) { %>
-					<tr>
-						<th scope="col"><%=t.getDescription() %></th>
-						<th scope="col"><%=t.getDateLimite() %></th>
-					</tr>				
-
-<% 		}%>
-				</tbody>
-			</table>
-
-	<%	}  else {%>
+			else {%>
 			<p>
 				Vous n'avez pas encore de tâche !<br>
 				Vous pouvez remplir le formulaire ci-dessous pour ajouter une tâche dès à présent.
 			</p>
 	  <%} %>
 			
-			<h2>Ajouter une nouvelle tâche</h2>
+			<h2 class="m-5">Ajouter une nouvelle tâche</h2>
 			 
 			<form class="container mt-5" method="post" action="task">
 				<div class="form-floating mb-3 mt-3">

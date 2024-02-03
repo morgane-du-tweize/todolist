@@ -8,6 +8,8 @@ import java.sql.SQLException;
 
 import org.mindrot.jbcrypt.BCrypt;
 
+import com.mysql.cj.util.Util;
+
 import models.Utilisateur;
 
 public class UtilisateurDAO extends DAOContext {
@@ -35,9 +37,9 @@ public class UtilisateurDAO extends DAOContext {
 	public static Utilisateur isValidUtilisateur(String uLogin, String uPassword) {
 		
 		try(Connection connection = DriverManager.getConnection(url, login, password)){
-			String isConnectedUser = "SELECT * FROM td_users WHERE u_pseudo =?;" ;
+			String request = "SELECT * FROM td_users WHERE u_pseudo =?;" ;
 
-			try (PreparedStatement prep = connection.prepareStatement(isConnectedUser)){
+			try (PreparedStatement prep = connection.prepareStatement(request)){
 				prep.setString(1, uLogin);
 				try(ResultSet resultSet = prep.executeQuery()){
 					if (resultSet.next()) {
@@ -49,6 +51,7 @@ public class UtilisateurDAO extends DAOContext {
 									uPassword
 								);
 							newUser.setuId(uID);
+							System.out.println(newUser);
 							return newUser ;
 
 						}else {
@@ -69,5 +72,29 @@ public class UtilisateurDAO extends DAOContext {
 		}
 		return null ;
 	}
+	
+	public static Utilisateur selectById(String idUser) {
+		
+		try(Connection connection = DriverManager.getConnection(url, login, password)){
+			String request = "SELECT * FROM td_users WHERE u_id=?;";
+			try(PreparedStatement prep = connection.prepareStatement(request)){
+				prep.setString(1, idUser);
+				try(ResultSet resultSet = prep.executeQuery()){
+					if (resultSet.next()) {
+						String userName = resultSet.getString(2);
+						String password = resultSet.getString(3);
+						Utilisateur utilisateur = new Utilisateur(userName, password);
+						return utilisateur;
+					}
+					
+				}
+			}
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}		
+		return null;
+	}
+
 
 }

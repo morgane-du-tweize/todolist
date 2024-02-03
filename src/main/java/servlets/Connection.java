@@ -45,7 +45,7 @@ public class Connection extends HttpServlet {
 			session.setAttribute("connectedUser", user);
 			session.setAttribute("idUser", user.getuId());
 			response.sendRedirect(request.getContextPath() + "/accueil");
-			return;
+	
 			
 		}
 		doGet(request, response);

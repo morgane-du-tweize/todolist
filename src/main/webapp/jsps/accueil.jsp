@@ -22,8 +22,11 @@
 			<div class="m-5">
 				<h1>Liste de tâches</h1>
 			</div>
-			
-			<h2 class="m-5">Bonjour ${idUser} - voici la liste de vos missions</h2>
+
+
+			<%Utilisateur utilisateur = (Utilisateur) request.getAttribute("utilisateur"); %>
+
+			<h2 class="m-5">Bonjour <%=utilisateur.getuPseudo() %> - voici la liste de vos missions</h2>
 
 			<% ArrayList<Tache> allTasks = (ArrayList <Tache>) request.getAttribute("listeTaches");
 			
@@ -33,14 +36,11 @@
 					session.setAttribute("oneTask", t);  %>
 					
 					<ul class="list-group list-group-horizontal">
-						<li class="list-group-item"><%=t.getDescription()%> </li>
-						<li class="list-group-item"><a href="details">details</a> </li>
-					
+						<li class="list-group-item w-25"><%=t.getDescription()%> </li>
+						<li class="list-group-item w-25"><a href="details">details</a> </li>
 					</ul>
-	
 				<%	}
 			}	 
-				 
 			
 			else {%>
 			<p>

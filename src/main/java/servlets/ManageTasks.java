@@ -3,6 +3,7 @@ package servlets;
 import java.io.IOException;
 import java.sql.Date;
 
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,6 +18,8 @@ import models.Tache;
 public class ManageTasks extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		String description = request.getParameter("ndescription");
@@ -30,5 +33,5 @@ public class ManageTasks extends HttpServlet {
 		TacheDAO.saveTache(newTask, idUser);
 		response.sendRedirect("accueil");
 	}
-	
+		
 }

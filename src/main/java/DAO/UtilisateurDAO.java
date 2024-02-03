@@ -16,10 +16,9 @@ public class UtilisateurDAO extends DAOContext {
 
 	public static void saveUser(Utilisateur newUser) {
 		try(Connection connection = DriverManager.getConnection(url, login, password)){
-			
 			String hashed = BCrypt.hashpw(newUser.getuPassword(), BCrypt.gensalt());
-			String saveUser = "INSERT INTO td_users (u_pseudo, u_password) VALUES (?, ?); ";
-			try (PreparedStatement prep = connection.prepareStatement(saveUser)){
+			String sqlOrder = "INSERT INTO td_users (u_pseudo, u_password) VALUES (?, ?); ";
+			try (PreparedStatement prep = connection.prepareStatement(sqlOrder)){
 				prep.setString(1, newUser.getuPseudo());
 				prep.setString(2, hashed);
 				prep.executeUpdate();
@@ -37,22 +36,22 @@ public class UtilisateurDAO extends DAOContext {
 	public static Utilisateur isValidUtilisateur(String uLogin, String uPassword) {
 		
 		try(Connection connection = DriverManager.getConnection(url, login, password)){
-			String request = "SELECT * FROM td_users WHERE u_pseudo =?;" ;
+			String sqlOrder = "SELECT * FROM td_users WHERE u_pseudo =?;" ;
 
-			try (PreparedStatement prep = connection.prepareStatement(request)){
+			try (PreparedStatement prep = connection.prepareStatement(sqlOrder)){
 				prep.setString(1, uLogin);
 				try(ResultSet resultSet = prep.executeQuery()){
 					if (resultSet.next()) {
 						int uID = resultSet.getInt(1);
 						String hashedPassword = resultSet.getString("u_password");
 						if (BCrypt.checkpw(uPassword, hashedPassword)) {
-							Utilisateur newUser = new Utilisateur(
+							Utilisateur utilisateur = new Utilisateur(
 									resultSet.getString("u_pseudo"),
 									uPassword
 								);
-							newUser.setuId(uID);
-							System.out.println(newUser);
-							return newUser ;
+							utilisateur.setuId(uID);
+							System.out.println(utilisateur);
+							return utilisateur ;
 
 						}else {
 							return null ;
@@ -76,8 +75,8 @@ public class UtilisateurDAO extends DAOContext {
 	public static Utilisateur selectById(String idUser) {
 		
 		try(Connection connection = DriverManager.getConnection(url, login, password)){
-			String request = "SELECT * FROM td_users WHERE u_id=?;";
-			try(PreparedStatement prep = connection.prepareStatement(request)){
+			String sqlOrder = "SELECT * FROM td_users WHERE u_id=?;";
+			try(PreparedStatement prep = connection.prepareStatement(sqlOrder)){
 				prep.setString(1, idUser);
 				try(ResultSet resultSet = prep.executeQuery()){
 					if (resultSet.next()) {

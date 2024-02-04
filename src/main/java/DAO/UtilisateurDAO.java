@@ -14,15 +14,32 @@ import models.Utilisateur;
 
 public class UtilisateurDAO extends DAOContext {
 
-	public static void saveUser(Utilisateur newUser) {
+	public static boolean saveUser(Utilisateur newUser) {
 		try(Connection connection = DriverManager.getConnection(url, login, password)){
 			String hashed = BCrypt.hashpw(newUser.getuPassword(), BCrypt.gensalt());
-			String sqlOrder = "INSERT INTO td_users (u_pseudo, u_password) VALUES (?, ?); ";
-			try (PreparedStatement prep = connection.prepareStatement(sqlOrder)){
-				prep.setString(1, newUser.getuPseudo());
-				prep.setString(2, hashed);
-				prep.executeUpdate();
+			String checkIfExisting = "SELECT * FROM td_users WHERE u_pseudo=?;";
+			try (PreparedStatement prepIfExisting = connection.prepareStatement(checkIfExisting)){
+				prepIfExisting.setString(1, newUser.getuPseudo());
+				try(ResultSet resultSet = prepIfExisting.executeQuery()){
+					// si il existe déjà un utilisateur avec le même login en base de données
+					//on redirige vers accueil
+					if (resultSet.next()) {
+						return false ;
+					}
+					else {
+						System.out.println("nouvel user - enregistrer dans DB");
+						String sqlOrder = "INSERT INTO td_users (u_pseudo, u_password) VALUES (?, ?); ";
+						try (PreparedStatement prep = connection.prepareStatement(sqlOrder)){
+							prep.setString(1, newUser.getuPseudo());
+							prep.setString(2, hashed);
+							prep.executeUpdate();
+							return true ;
+						}						
+
+					}
+				}
 			}
+
 		}
 		catch (SQLException e) {
 			System.out.println("url = " + url);
@@ -31,6 +48,7 @@ public class UtilisateurDAO extends DAOContext {
 		catch (Exception e) {
 			e.printStackTrace();
 		}
+		return false;
 	}
 
 	public static Utilisateur isValidUtilisateur(String uLogin, String uPassword) {

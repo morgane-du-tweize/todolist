@@ -26,7 +26,7 @@
 		%>
 			<div class="m-5">
 				<h1><%=description%></h1>
-				<p><%=datelim%></p>
+				<p>Date limite : <%=datelim%></p>
 			</div>
 
 			<form method="post" action="UpdateTask" class="container mt-5">

@@ -90,7 +90,24 @@ public class TacheDAO extends DAOContext {
 			try(PreparedStatement prep = connection.prepareStatement(sqlOrder)){
 				prep.setString(1, String.valueOf(idTache));
 				prep.executeUpdate();
-				System.out.println("=============== tache supprimée ==================");
+			}
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void updateTache(int idTache, String description, Date dateLimite) {
+		try(Connection connection = DriverManager.getConnection(url, login, password)){
+			String sqlOrder = "UPDATE td_taches SET t_description=?, t_date_limite=? WHERE t_id=?;";
+			try(PreparedStatement prep = connection.prepareStatement(sqlOrder)){
+				prep.setString(1, description);
+				prep.setDate(2, dateLimite);
+				prep.setString(3, String.valueOf(idTache));
+				prep.executeUpdate();
 			}
 		}
 		catch(SQLException e) {

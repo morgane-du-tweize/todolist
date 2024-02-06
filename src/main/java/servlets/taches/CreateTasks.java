@@ -22,12 +22,12 @@ public class CreateTasks extends HttpServlet {
 		String description = request.getParameter("ndescription");
 		String dateLimiteStr = request.getParameter("ndatelim");
 		Date dateLimite = Date.valueOf(dateLimiteStr);
-		Tache newTask = new Tache(description, dateLimite);
+		Tache nouvelleTache = new Tache(description, dateLimite);
 
 		HttpSession session = request.getSession(true);
 		int idUser = (int) session.getAttribute("idUser") ;
 
-		TacheDAO.saveTache(newTask, idUser);
+		TacheDAO.saveTache(nouvelleTache, idUser);
 		response.sendRedirect("accueil");
 	}
 		

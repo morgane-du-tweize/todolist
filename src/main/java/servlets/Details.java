@@ -36,14 +36,14 @@ public class Details extends HttpServlet {
 			return ;
 		}
 		String idTache = request.getParameter("idtask");
-		Tache newTask = TacheDAO.selectById(idTache);
-		if (newTask == null) {
+		Tache nouvelleTache = TacheDAO.selectById(idTache);
+		if (nouvelleTache == null) {
 			System.out.println("rien");
 		}
 		else {
-			request.setAttribute("idTache", newTask.getId());
-			request.setAttribute("dateLimite", newTask.getDateLimite());
-			request.setAttribute("description", newTask.getDescription());
+			request.setAttribute("idTache", nouvelleTache.getId());
+			request.setAttribute("dateLimite", nouvelleTache.getDateLimite());
+			request.setAttribute("description", nouvelleTache.getDescription());
 			doGet(request, response);			
 		}
 

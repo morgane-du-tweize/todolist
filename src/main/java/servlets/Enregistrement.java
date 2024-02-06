@@ -19,13 +19,13 @@ public class Enregistrement extends HttpServlet {
 
 		String userName = request.getParameter("epseudo");
 		String userPassword = request.getParameter("epassword");
-		Utilisateur newUser = new Utilisateur(userName, userPassword);
+		Utilisateur nouvelUtilisateur = new Utilisateur(userName, userPassword);
 		
-		if (UtilisateurDAO.saveUser(newUser)) {
-			newUser = UtilisateurDAO.isValidUtilisateur(userName, userPassword) ;
+		if (UtilisateurDAO.saveUser(nouvelUtilisateur)) {
+			nouvelUtilisateur = UtilisateurDAO.isValidUtilisateur(userName, userPassword) ;
 			HttpSession session = request.getSession(true);
-			session.setAttribute("connectedUser", newUser);
-			session.setAttribute("idUser", newUser.getuId());
+			session.setAttribute("connectedUser", nouvelUtilisateur);
+			session.setAttribute("idUser", nouvelUtilisateur.getuId());
 			response.sendRedirect(request.getContextPath() + "/accueil");	
 		}
 		else {

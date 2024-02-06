@@ -28,12 +28,23 @@
 				<h1><%=description%></h1>
 				<p>Date limite : <%=datelim%></p>
 			</div>
-
+			
+			
+			<h2 class="m-5">Mettre à jour la tâche :</h2>
 			<form method="post" action="UpdateTask" class="container mt-5">
+				<div class="form-floating mb-3 mt-3">
+					<label for="ndescription" class="form-label">nouvelle description :</label><br>
+					<input type="text" id="ndescription" name="ndescription" class="form-control"><br>
+				</div>
+				<div class="form-floating mb-3 mt-3">
+					<label for="ndatelim" class="form-label"></label>nouvelle date limite :<br>
+					<input type="date" id="ndatelim" name="ndatelim" class="form-control"><br>
+				</div>
 				<input type="hidden" name="idtache" value="<%=idTache%>">
-				<input type="submit" value="mettre à jour">
+				<input type="submit" value="mettre à jour" class="btn btn-light">
 			</form>
 
+			<h2 class="m-5">Supprimer la tâche :</h2>
 			<form method="post" action="DeleteTask" class="container mt-5">
 				<input type="hidden" name="idtache" value="<%=idTache%>">
 				<input type="submit" value="supprimer">

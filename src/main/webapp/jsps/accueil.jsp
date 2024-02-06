@@ -21,7 +21,6 @@
 				<h1>Liste de tâches</h1>
 			</div>
 
-
 			<%Utilisateur utilisateur = (Utilisateur) request.getAttribute("utilisateur"); %>
 
 			<h2 class="m-5">Bonjour <%=utilisateur.getuPseudo() %> - voici la liste de vos missions</h2>
@@ -40,12 +39,9 @@
 								<input type="submit" value="details">
 							</form>						
 						
-						
 						</li>
 					</ul>
-					<div>
 
-					</div>
 				<%	}
 			}	 
 			

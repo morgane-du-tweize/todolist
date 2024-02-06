@@ -38,18 +38,17 @@ public class Connection extends HttpServlet {
 		
 		String pseudo = request.getParameter("cpseudo");
 		String password = request.getParameter("cpassword");
-		Utilisateur user = UtilisateurDAO.isValidUtilisateur(pseudo, password) ;
+		Utilisateur utilisateur = UtilisateurDAO.isValidUtilisateur(pseudo, password) ;
 		
-		if (user != null) {
+		if (utilisateur != null) {
 			HttpSession session = request.getSession(true);
-			session.setAttribute("connectedUser", user);
-			session.setAttribute("idUser", user.getuId());
-
+			session.setAttribute("connectedUser", utilisateur);
+			session.setAttribute("idUser", utilisateur.getuId());
 			response.sendRedirect(request.getContextPath() + "/accueil");
-			
 		}
-		doGet(request, response);
-
+		else {
+			response.sendRedirect(request.getContextPath() + "/connection");
+		}
 	}
 
 }

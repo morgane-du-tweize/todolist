@@ -30,8 +30,8 @@ public class Accueil extends HttpServlet {
 
 		int idUser = (int) session.getAttribute("idUser") ;
 		Utilisateur utilisateur = UtilisateurDAO.selectById(String.valueOf(idUser));
-		ArrayList<Tache> allTasks = TacheDAO.selectAll(idUser) ;
-		request.setAttribute("listeTaches", allTasks);
+		ArrayList<Tache> listeTaches = TacheDAO.selectAll(idUser) ;
+		request.setAttribute("listeTaches", listeTaches);
 		request.setAttribute("utilisateur", utilisateur);
 		request.getRequestDispatcher("/jsps/accueil.jsp").forward(request, response);
 

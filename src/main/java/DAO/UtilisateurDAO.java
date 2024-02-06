@@ -27,22 +27,19 @@ public class UtilisateurDAO extends DAOContext {
 						return false ;
 					}
 					else {
-						System.out.println("nouvel user - enregistrer dans DB");
 						String sqlOrder = "INSERT INTO td_users (u_pseudo, u_password) VALUES (?, ?); ";
 						try (PreparedStatement prep = connection.prepareStatement(sqlOrder)){
 							prep.setString(1, newUser.getuPseudo());
 							prep.setString(2, hashed);
 							prep.executeUpdate();
 							return true ;
-						}						
-
+						}
 					}
 				}
 			}
 
 		}
 		catch (SQLException e) {
-			System.out.println("url = " + url);
 			e.printStackTrace();
 		}
 		catch (Exception e) {
@@ -68,7 +65,6 @@ public class UtilisateurDAO extends DAOContext {
 									uPassword
 								);
 							utilisateur.setuId(uID);
-							System.out.println(utilisateur);
 							return utilisateur ;
 
 						}else {
@@ -98,9 +94,9 @@ public class UtilisateurDAO extends DAOContext {
 				prep.setString(1, idUser);
 				try(ResultSet resultSet = prep.executeQuery()){
 					if (resultSet.next()) {
-						String userName = resultSet.getString(2);
+						String login = resultSet.getString(2);
 						String password = resultSet.getString(3);
-						Utilisateur utilisateur = new Utilisateur(userName, password);
+						Utilisateur utilisateur = new Utilisateur(login, password);
 						return utilisateur;
 					}
 					

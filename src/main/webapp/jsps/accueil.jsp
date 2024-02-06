@@ -34,7 +34,6 @@
 					
 					<ul class="list-group list-group-horizontal">
 						<li class="list-group-item w-25"><%=t.getDescription()%> </li>
-						<li class="list-group-item w-25">date limite : <%=t.getDateLimite()%></li>
 						<li>
 							<form method="POST" action="details">
 								<input type="hidden" name="idtask" value="<%=t.getId()%>">						

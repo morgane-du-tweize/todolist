@@ -13,9 +13,7 @@
 	
 	</head>
 	<body>
-		<header>
-			<div class="p-5 bg-primary text-white text-center"><h2>Application TO-DO list</h2></div>
-		</header>
+		<%@ include file="header.jsp"%>
 		
 		<main>
 
@@ -31,14 +29,24 @@
 			<% ArrayList<Tache> allTasks = (ArrayList <Tache>) request.getAttribute("listeTaches");
 			
 			if (allTasks != null && allTasks.size() > 0) { 
-
 				 for (Tache t : allTasks) { 
-					session.setAttribute("oneTask", t);  %>
+			%>
 					
 					<ul class="list-group list-group-horizontal">
 						<li class="list-group-item w-25"><%=t.getDescription()%> </li>
-						<li class="list-group-item w-25"><a href="details">details</a> </li>
+						<li class="list-group-item w-25">date limite : <%=t.getDateLimite()%></li>
+						<li>
+							<form method="POST" action="details">
+								<input type="hidden" name="idtask" value="<%=t.getId()%>">						
+								<input type="submit" value="details">
+							</form>						
+						
+						
+						</li>
 					</ul>
+					<div>
+
+					</div>
 				<%	}
 			}	 
 			
@@ -55,45 +63,17 @@
 				<div class="form-floating mb-3 mt-3">
 					<label for="ndescription" class="form-label">description de la tâche :</label><br>
 					<input type="text" id="ndescription" name="ndescription" class="form-control"><br>
-				
 				</div>
 				<div class="form-floating mb-3 mt-3">
 					<label for="ndatelim" class="form-label"></label>date limite :<br>
 					<input type="date" id="ndatelim" name="ndatelim" class="form-control"><br>
 				</div>
-
 				<input type="submit" vale="submit" class="btn btn-l	ight">
 			</form>
 			
 		</main>
-
-		<footer
-        class="text-center text-lg-start text-white"
-        style="background-color: #1c2331"
-        >
-            <section
-                class="d-flex justify-content-between p-4"
-                style="background-color: #6351ce"
-            >
-
-                <div class="me-5">
-                    <span>Morgane Rossi</span>
-                </div>
-
-                <div>
-                    <a href="https://github.com/morgane-du-tweize?tab=repositories" class="text-white me-4">
-                        <i class="fab fa-github"></i>
-                      </a>
-                </div>
-
-                <div>
-                    <a href="" class="text-white me-4">
-                        <i class="fab fa-linkedin"></i>
-                      </a>
-                </div>
-
-            </section>
-		</footer>
+		
+		<%@ include file="footer.jsp" %>
 
 	</body>
 </html>

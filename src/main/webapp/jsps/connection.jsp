@@ -10,9 +10,8 @@
 
 	<body>
 
-		<header>
-			<div class="p-5 bg-primary text-white text-center"><h2>Application TO-DO list</h2></div>
-		</header>
+		<%@ include file="header.jsp" %>
+
         <div class="container m-5">
             <h1>Veuillez vous enregistrer ou vous connecter</h1>
         </div>
@@ -23,11 +22,11 @@
 
 		<form class="container mt-5" method="post" action="enregistrement" >
             <div class="form-floating w-25">
-                <label for="epseudo" class="form-label">Pseudo :</label><br>
+                <label for="epseudo" class="form-label">Nom d'utilisateur :</label><br>
                 <input type="text" id="epseudo" name="epseudo" class="form-control"><br>
             </div>
             <div class="form-floating w-25">
-                <label for="epassword" class="form-label"></label>Password :<br>
+                <label for="epassword" class="form-label"></label>Mot de passe :<br>
                 <input type="password" id="epassword" name="epassword" class="form-control"><br>
             </div>
             <input type="submit" value="submit" class="btn btn-light w-25"><br><br>
@@ -46,38 +45,7 @@
             <input type="submit" value="submit" class="btn btn-light w-25"><br><br>
         </form>
 
-
-		<footer
-        class="text-center text-lg-start text-white"
-        style="background-color: #1c2331"
-        >
-            <section
-                class="d-flex justify-content-between p-4"
-                style="background-color: #6351ce"
-            >
-
-                <!-- Left-->
-                <div class="me-5">
-                    <span>Morgane Rossi</span>
-                </div>
-
-<!-- https://mdbootstrap.com/snippets  -->
-
-                <!-- Right-->
-                <div>
-                    <a href="https://github.com/morgane-du-tweize?tab=repositories" class="text-white me-4">
-                        <i class="fab fa-github"></i>
-                      </a>
-                </div>
-
-                <div>
-                    <a href="" class="text-white me-4">
-                        <i class="fab fa-linkedin"></i>
-                      </a>
-                </div>
-
-            </section>
-		</footer>
+		<%@ include file="footer.jsp" %>
 
 	</body>
 </html>

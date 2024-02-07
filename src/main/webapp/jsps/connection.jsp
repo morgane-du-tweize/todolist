@@ -12,8 +12,8 @@
 
 		<%@ include file="header.jsp" %>
 
-        <div class="container m-5">
-            <h1>Veuillez vous enregistrer ou vous connecter</h1>
+        <div class="mt-4 p-5 bg-secondary text-white rounded">
+            <h1 class="display-4">Veuillez vous enregistrer ou vous connecter</h1>
         </div>
 		
         <div class="mt-5">

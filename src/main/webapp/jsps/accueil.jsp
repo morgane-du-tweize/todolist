@@ -17,8 +17,8 @@
 		
 		<main>
 
-			<div class="m-5">
-				<h1>Liste de tâches</h1>
+			<div class="mt-4 p-5 bg-secondary text-white rounded">
+				<h1 class="display-4">Liste de tâches</h1>
 			</div>
 
 			<%Utilisateur utilisateur = (Utilisateur) request.getAttribute("utilisateur"); %>

@@ -16,8 +16,11 @@
 	<body>
 	
 		<%@ include file="header.jsp" %>
-
 		<main>
+		
+		<div class="mt-4 p-4 bg-secondary text-white rounded">
+			<h1 class="display-4">Détails de la tâche</h1>
+		</div>
 		<%
 			String idTache = (String) request.getAttribute("idTache");
 			Date dateLimite = (Date) request.getAttribute("dateLimite");
@@ -25,30 +28,35 @@
 			String description = (String) request.getAttribute("description");
 		%>
 			<div class="m-5">
-				<h1><%=description%></h1>
+				<h2><%=description%></h2>
 				<p>Date limite : <%=datelim%></p>
 			</div>
-			
-			
-			<h2 class="m-5">Mettre à jour la tâche :</h2>
-			<form method="post" action="UpdateTask" class="container mt-5">
-				<div class="form-floating mb-3 mt-3">
-					<label for="ndescription" class="form-label">nouvelle description :</label><br>
-					<input type="text" id="ndescription" name="ndescription" class="form-control"><br>
+			<div class="container mt-5">
+				<h3>Mettre à jour la tâche :</h3>
+				<form method="post" action="UpdateTask" class="container mt-5">
+					<div class="form-floating mb-3 mt-3">
+						<label for="ndescription" class="form-label">nouvelle description :</label><br>
+						<input type="text" id="ndescription" name="ndescription" class="form-control"><br>
+					</div>
+					<div class="form-floating mb-3 mt-3">
+						<label for="ndatelim" class="form-label"></label>nouvelle date limite :<br>
+						<input type="date" id="ndatelim" name="ndatelim" class="form-control"><br>
+					</div>
+					<input type="hidden" name="idtache" value="<%=idTache%>">
+					<input type="submit" value="mettre à jour" class="btn btn-light">
+				</form>
+				<div class="my-4">
+					<h3>Supprimer la tâche :</h3>
+					<form method="post" action="DeleteTask" class="container mt-5">
+						<input type="hidden" name="idtache" value="<%=idTache%>">
+						<input type="submit" value="supprimer">
+					</form>
 				</div>
-				<div class="form-floating mb-3 mt-3">
-					<label for="ndatelim" class="form-label"></label>nouvelle date limite :<br>
-					<input type="date" id="ndatelim" name="ndatelim" class="form-control"><br>
-				</div>
-				<input type="hidden" name="idtache" value="<%=idTache%>">
-				<input type="submit" value="mettre à jour" class="btn btn-light">
-			</form>
+	
 
-			<h2 class="m-5">Supprimer la tâche :</h2>
-			<form method="post" action="DeleteTask" class="container mt-5">
-				<input type="hidden" name="idtache" value="<%=idTache%>">
-				<input type="submit" value="supprimer">
-			</form>
+			</div>
+			
+
 		
 		</main>
 

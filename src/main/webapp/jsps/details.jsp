@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.sql.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -24,12 +25,13 @@
 		<%
 			String idTache = (String) request.getAttribute("idTache");
 			Date dateLimite = (Date) request.getAttribute("dateLimite");
-			String datelim = dateLimite.toString();
+			SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
 			String description = (String) request.getAttribute("description");
+			String dateFormat = f.format(dateLimite).toString();
 		%>
 			<div class="m-5">
 				<h2><%=description%></h2>
-				<p>Date limite : <%=datelim%></p>
+				<p>Date limite : <%=dateFormat%></p>
 			</div>
 			<div class="container mt-5">
 				<h3>Mettre à jour la tâche :</h3>

@@ -13,6 +13,12 @@ public class Tache {
 		setDescription(description);
 		setDateLimite(dateLimite);
 	}
+	
+	public Tache(String id, String description, Date dateLimite) {
+		setId(id);
+		setDescription(description);
+		setDateLimite(dateLimite);
+	}
 
 	public String getId() {
 		return id;

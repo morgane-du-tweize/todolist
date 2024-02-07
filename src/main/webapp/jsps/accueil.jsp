@@ -30,17 +30,20 @@
 			if (allTasks != null && allTasks.size() > 0) { 
 				 for (Tache t : allTasks) { 
 			%>
+			<div >
+				<ul class="list-group list-group-horizontal m-5">
+					<li class="list-group-item w-25"><%=t.getDescription()%> </li>
+					<li>
+						<form method="POST" action="details">
+							<input type="hidden" name="idtask" value="<%=t.getId()%>">						
+							<input type="submit" value="details">
+						</form>						
 					
-					<ul class="list-group list-group-horizontal">
-						<li class="list-group-item w-25"><%=t.getDescription()%> </li>
-						<li>
-							<form method="POST" action="details">
-								<input type="hidden" name="idtask" value="<%=t.getId()%>">						
-								<input type="submit" value="details">
-							</form>						
-						
-						</li>
-					</ul>
+					</li>
+				</ul>			
+			</div>
+					
+
 
 				<%	}
 			}	 
@@ -63,8 +66,12 @@
 					<label for="ndatelim" class="form-label"></label>date limite :<br>
 					<input type="date" id="ndatelim" name="ndatelim" class="form-control"><br>
 				</div>
-				<input type="submit" vale="submit" class="btn btn-l	ight">
+				<input type="submit" value="submit" class="btn btn-l	ight">
 			</form>
+			
+			<div class="mt-5">
+				<h2 class="m-5"><a href="deconnection">Déconnection</a></h2>
+			</div>
 			
 		</main>
 		

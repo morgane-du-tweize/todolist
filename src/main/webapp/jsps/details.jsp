@@ -52,12 +52,12 @@
 						<input type="submit" value="supprimer">
 					</form>
 				</div>
-	
-
 			</div>
 			
-
-		
+			<div class="mt-5">
+				<h2 class="m-5"><a href="accueil">Retour à l'accueil</a></h2>
+			</div>			
+	
 		</main>
 
 		<%@ include file="footer.jsp" %>

@@ -2,6 +2,8 @@ package models;
 
 import java.sql.Date;
 
+import javax.management.RuntimeErrorException;
+
 public class Tache {
 	
 	private String id;
@@ -42,6 +44,15 @@ public class Tache {
 	
 	public void setDateLimite(Date dateLimite) {
 		this.dateLimite = dateLimite;
+	}
+	
+	public void setNouvelleDate(Date dateLimite) {
+		long maintenant = System.currentTimeMillis();
+		Date dateNow = new Date(maintenant);
+		if (dateNow.after(dateLimite)) {
+			throw new RuntimeException();
+		}
+		this.dateLimite = dateLimite;		
 	}
 	
 	public int getIdUser() {

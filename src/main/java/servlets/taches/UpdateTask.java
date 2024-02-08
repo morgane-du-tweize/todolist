@@ -20,8 +20,11 @@ public class UpdateTask extends HttpServlet {
 		String description = request.getParameter("ndescription");
 		String dateLimiteStr = request.getParameter("ndatelim");
 		Date dateLimite = Date.valueOf(dateLimiteStr);
-		int idTache = Integer.valueOf(request.getParameter("idtache"));
-		TacheDAO.updateTache(idTache, description, dateLimite);
+		String idTache = request.getParameter("idtache");
+		Tache nouvelleTache = new Tache(idTache, description, dateLimite);
+		nouvelleTache.setNouvelleDate(dateLimite);
+		
+		TacheDAO.updateTache(nouvelleTache);
 		response.sendRedirect("accueil");
 	}
 

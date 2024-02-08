@@ -22,8 +22,9 @@ public class CreateTasks extends HttpServlet {
 		String description = request.getParameter("ndescription");
 		String dateLimiteStr = request.getParameter("ndatelim");
 		Date dateLimite = Date.valueOf(dateLimiteStr);
+		
 		Tache nouvelleTache = new Tache(description, dateLimite);
-
+		nouvelleTache.setNouvelleDate(dateLimite);
 		HttpSession session = request.getSession(true);
 		int idUser = (int) session.getAttribute("idUser") ;
 

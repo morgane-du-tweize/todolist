@@ -1,4 +1,4 @@
-CREATE TABLE td_users IF NOT EXISTS (
+CREATE TABLE IF NOT EXISTS td_users (
     u_id INT NOT NULL AUTO_INCREMENT,
     u_pseudo VARCHAR (25) NOT NULL,
     u_password VARCHAR (100) NOT NULL,
@@ -10,8 +10,7 @@ INSERT INTO td_users (u_pseudo, u_password) VALUES ("ripley", "alien") ;
 INSERT INTO td_users (u_pseudo, u_password) VALUES ("jean kevin", "crevette") ;
 INSERT INTO td_users (u_pseudo, u_password) VALUES ("julien a nouveau", "test") ;
 
-
-CREATE TABLE td_taches IF NOT EXISTS (
+CREATE TABLE IF NOT EXISTS td_taches (
     t_id INT NOT NULL AUTO_INCREMENT,
     t_description VARCHAR (250) NOT NULL,
     t_date_limite DATE,

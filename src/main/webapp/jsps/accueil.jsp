@@ -37,13 +37,10 @@
 						<form method="POST" action="details">
 							<input type="hidden" name="idtask" value="<%=t.getId()%>">						
 							<input type="submit" value="details">
-						</form>						
-					
+						</form>
 					</li>
 				</ul>			
 			</div>
-					
-
 
 				<%	}
 			}	 
